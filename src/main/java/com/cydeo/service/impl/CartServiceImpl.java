@@ -25,11 +25,14 @@ public class CartServiceImpl implements CartService {
     @Override
     public List<CartItem> retrieveCartDetail(UUID cartId) {
         // todo implement method using stream
+//        return CART_LIST.stream()
+//                .filter(cart -> cart.getId().equals(cartId))
+//                .map(Cart::getCartItemList)
+//                .flatMap(List::stream)
+//                .toList();
         return CART_LIST.stream()
                 .filter(cart -> cart.getId().equals(cartId))
-                .map(Cart::getCartItemList)
-                .flatMap(List::stream)
-                .toList();
+                .findAny().get().getCartItemList();
     }
 
     @Override
